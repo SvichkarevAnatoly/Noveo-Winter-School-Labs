@@ -3,6 +3,7 @@ package ru.noveogroup.winterschool.svichkarev.BigInteger;
 import java.math.BigInteger;
 
 public class FibVectorBig {
+	// CR неговорящие названия
 	private BigInteger rc, rd;
 	private BigInteger tc;
 	

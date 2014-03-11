@@ -1,6 +1,7 @@
 package ru.noveogroup.winterschool.svichkarev.MatrixFibonacci;
 
 public class FibVector {
+	// CR неговорящие названия
 	private int rc, rd;
 	private int tc;
 	

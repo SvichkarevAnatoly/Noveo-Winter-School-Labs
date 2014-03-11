@@ -5,6 +5,7 @@ import java.math.BigInteger;
 public class FibMatrixBig {
 	public BigInteger a11, a12,
 					  a21, a22;
+    // CR переменным достаточно быть локальными
 	private BigInteger tmpa11, tmpa12, tmpa21;
 	
 	public FibMatrixBig( int a11, int a12, int a21, int a22 ){
