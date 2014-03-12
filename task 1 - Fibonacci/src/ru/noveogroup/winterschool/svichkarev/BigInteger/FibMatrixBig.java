@@ -3,9 +3,9 @@ package ru.noveogroup.winterschool.svichkarev.BigInteger;
 import java.math.BigInteger;
 
 public class FibMatrixBig {
-	public BigInteger a11, a12,
-					  a21, a22;
-    // CR переменным достаточно быть локальными
+	private BigInteger a11, a12,
+					   a21, a22;
+	
 	private BigInteger tmpa11, tmpa12, tmpa21;
 	
 	public FibMatrixBig( int a11, int a12, int a21, int a22 ){
@@ -24,5 +24,18 @@ public class FibMatrixBig {
 	    a12 = tmpa11.multiply( a12).add( a12.multiply( a22 ) );
 	    a21 = a21.multiply( tmpa11 ).add( a22.multiply( a21 ) );     
 	    a22 = tmpa21.multiply( tmpa12 ).add( a22.multiply( a22 ) );
+	}
+	
+	public BigInteger getA11(){
+		return a11;
+	}
+	public BigInteger getA12(){
+		return a12;
+	}
+	public BigInteger getA21(){
+		return a21;
+	}
+	public BigInteger getA22(){
+		return a22;
 	}
 }

@@ -3,22 +3,22 @@ package ru.noveogroup.winterschool.svichkarev.BigInteger;
 import java.math.BigInteger;
 
 public class FibVectorBig {
-	// CR неговорящие названия
-	private BigInteger rc, rd;
+	// Result vector of Fibonacci sequence
+	private BigInteger resFibN, resFibNplus1;
 	private BigInteger tc;
 	
-	public FibVectorBig( int rc, int rd ) {
-		this.rc = BigInteger.valueOf( rc );
-		this.rd = BigInteger.valueOf( rd );
+	public FibVectorBig( int r1, int r2 ) {
+		this.resFibN = BigInteger.valueOf( r1 );
+		this.resFibNplus1 = BigInteger.valueOf( r2 );
 	}
 	
 	public void mul( FibMatrixBig fm ) {
-		tc = rc;
-	    rc = rc.multiply( fm.a11 ).add( rd.multiply( fm.a21 ) );
-	    rd = tc.multiply( fm.a12 ).add( rd.multiply( fm.a22 ) );
+		tc = resFibN;
+	    resFibN = resFibN.multiply( fm.getA11() ).add( resFibNplus1.multiply( fm.getA21() ) );
+	    resFibNplus1 = tc.multiply( fm.getA12() ).add( resFibNplus1.multiply( fm.getA22() ) );
 	}
 
 	public BigInteger returnResult() {
-		return rc;
+		return resFibN;
 	}
 }

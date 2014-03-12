@@ -3,7 +3,6 @@ package ru.noveogroup.winterschool.svichkarev.MatrixFibonacci;
 public class FibMatrix {
 	public int a11, a12,
 			   a21, a22;
-	// CR переменным достаточно быть локальными
 	private int tmpa11, tmpa12, tmpa21;
 	
 	public FibMatrix( int a11, int a12, int a21, int a22 ){
@@ -22,5 +21,18 @@ public class FibMatrix {
 	    a12 = tmpa11*a12 	+ a12*a22;
 	    a21 = a21*tmpa11 	+ a22*a21;     
 	    a22 = tmpa21*tmpa12 + a22*a22;
+	}
+	
+	public int getA11(){
+		return a11;
+	}
+	public int getA12(){
+		return a12;
+	}
+	public int getA21(){
+		return a21;
+	}
+	public int getA22(){
+		return a22;
 	}
 }

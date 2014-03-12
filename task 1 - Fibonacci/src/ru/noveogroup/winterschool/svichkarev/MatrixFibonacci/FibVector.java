@@ -1,22 +1,22 @@
 package ru.noveogroup.winterschool.svichkarev.MatrixFibonacci;
 
 public class FibVector {
-	// CR неговорящие названия
-	private int rc, rd;
+	// Result vector of Fibonacci sequence
+	private int resFibN, resFibNplus1;
 	private int tc;
 	
-	public FibVector( int rc, int rd ) {
-		this.rc = rc;
-		this.rd = rd;
+	public FibVector( int r1, int r2 ) {
+		this.resFibN = r1;
+		this.resFibNplus1 = r2;
 	}
 	
 	public void mul( FibMatrix fm ) {
-		tc = rc;
-	    rc = rc*fm.a11 + rd*fm.a21;
-	    rd = tc*fm.a12 + rd*fm.a22;
+		tc = resFibN;
+		resFibN = resFibN*fm.getA11() + resFibNplus1*fm.getA21();
+		resFibNplus1 = tc*fm.getA12() + resFibNplus1*fm.getA22();
 	}
 
 	public int returnResult() {
-		return rc;
+		return resFibN;
 	}
 }
