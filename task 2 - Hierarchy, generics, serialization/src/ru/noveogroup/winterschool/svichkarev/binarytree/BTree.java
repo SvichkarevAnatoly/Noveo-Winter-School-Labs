@@ -1,8 +1,6 @@
 package ru.noveogroup.winterschool.svichkarev.binarytree;
 
 import java.util.Iterator;
-import java.util.jar.JarException;
-
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 /*
@@ -12,15 +10,6 @@ import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 public class BTree<T extends Parent> implements Iterable<T> {
     private Node<T> root = null;
     
-    private static class Node<T>{
-        private T value;
-        private Node<T> left, right;
-        
-        public Node( T newValue ) {
-            value = newValue;
-        }
-    }
-    
     public void add( T value ) {
         //? проверка, что не null
         Node<T> tmpNode = root;
@@ -29,14 +18,14 @@ public class BTree<T extends Parent> implements Iterable<T> {
         while( tmpNode != null ){
             int cmp = value.hashCode() - tmpNode.hashCode();
             if( cmp == 0 ){
-                tmpNode.value = value;
+                tmpNode.setValue(value);
                 return;
             } else{
                 preNode = tmpNode;
                 if( cmp < 0 ){
-                    tmpNode = tmpNode.left;
+                    tmpNode = tmpNode.getLeftNode();
                 } else{
-                    tmpNode = tmpNode.right;
+                    tmpNode = tmpNode.getRightNode();
                 }
             }
         }
@@ -46,9 +35,9 @@ public class BTree<T extends Parent> implements Iterable<T> {
             root = newNode;
         } else{
             if( value.hashCode() < preNode.hashCode() ){
-                preNode.left = newNode;
+                preNode.setLeftNode(newNode);
             } else{
-                preNode.right = newNode;
+                preNode.setRightNode(newNode);
             }
         }
     }
@@ -65,9 +54,9 @@ public class BTree<T extends Parent> implements Iterable<T> {
             } else{
                 preNode = tmpNode;
                 if( cmp < 0 ){
-                    tmpNode = tmpNode.left;
+                    tmpNode = tmpNode.getLeftNode();
                 } else{
-                    tmpNode = tmpNode.right;
+                    tmpNode = tmpNode.getRightNode();
                 }
             }
         }
@@ -76,66 +65,40 @@ public class BTree<T extends Parent> implements Iterable<T> {
             return;
         }
         
-        if( tmpNode.right == null ){
+        if( tmpNode.getRightNode() == null ){
             // if right subtree is empty
             if( preNode == null ){
                 // if tmpNode == root
-                root = tmpNode.left;
+                root = tmpNode.getLeftNode();
             } else{
-                if( tmpNode == preNode.left ){
+                if( tmpNode == preNode.getLeftNode() ){
                     // tmpNode in left subtree of preNode
-                    preNode.left = tmpNode.left;
+                    preNode.setLeftNode(tmpNode.getLeftNode());
                 } else{
                     // tmpNode in right subtree of preNode
-                    preNode.right = tmpNode.left;
+                    preNode.setRightNode(tmpNode.getLeftNode());
                 }
             }
         } else{
             // find in right subtree the biggest element
-            Node<T> leftMost = tmpNode.right;
+            Node<T> leftMost = tmpNode.getRightNode();
             preNode = null;
-            while( leftMost.left != null ){
+            while( leftMost.getLeftNode() != null ){
                 preNode = leftMost;
-                leftMost = leftMost.left;
+                leftMost = leftMost.getLeftNode();
             }
             if( preNode != null ){
-                preNode.left = leftMost.right; //?
+                preNode.setLeftNode(leftMost.getRightNode()); //?
             } else{
-                tmpNode.right = leftMost.right; //?
+                tmpNode.setRightNode(leftMost.getRightNode()); //?
             }
-            tmpNode.value = leftMost.value;
+            tmpNode.setValue(leftMost.getValue());
         }
     }
 
     @Override
     public Iterator<T> iterator() {
-        Iterator<T> it = new Iterator<T>() {
-            private Node<T> currentNode = null;
-            
-            @Override
-            public boolean hasNext() {
-                // TODO
-                
-                return false;
-            }
-
-            @Override
-            public T next() {
-                if( ! hasNext() ){
-                    throw new java.util.NoSuchElementException( "no more elements" );
-                }
-                // TODO
-                return null;
-            }
-
-            @Override
-            public void remove() {
-                throw new java.lang.UnsupportedOperationException( "remove" );
-            }
-        };
-        
-        return it;
+        // our iterator
+        return new BTreeIterator<T>( root ).iterator();
     }
-    
-    
 }
