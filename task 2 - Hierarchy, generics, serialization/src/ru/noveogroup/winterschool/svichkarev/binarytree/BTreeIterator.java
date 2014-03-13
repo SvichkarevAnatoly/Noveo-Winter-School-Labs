@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 // http://www2.hawaii.edu/~esb/2010spring.ics211/TreeIterator.java.html
-public final class BTreeIterator<T> implements Iterable<T> {
+public final class BTreeIterator<T> implements Iterator<T> {
     Node<T> root = null;
     /* the class variables keep track of how much the iterator
      * has done so far, and what remains to be done.
@@ -16,38 +16,12 @@ public final class BTreeIterator<T> implements Iterable<T> {
      * is to the left (false) or right (true) of its parent
      */
     private Stack<Node<T>> visiting = new Stack<Node<T>>();
+    
+    
     public BTreeIterator( Node<T> treeRoot ){
         this.root = treeRoot;
         visiting = new Stack<Node<T>>();
         new Stack<Boolean>();
-    }
-    
-    @Override
-    public Iterator<T> iterator() {
-        Iterator<T> it = new Iterator<T>() {
-
-            @Override
-            public boolean hasNext() {
-                return (root != null);
-            }
-
-            @Override
-            public T next() {
-                if (! hasNext()) {
-                    throw new java.util.NoSuchElementException("no more elements");
-                }
-                
-                return inorderNext();
-            }
-
-            /* not implemented */
-            @Override
-            public void remove() {
-                throw new java.lang.UnsupportedOperationException("remove");
-            }
-        };
-        
-        return it;
     }
     
     /* find the leftmost node from this root, pushing all the
@@ -88,6 +62,26 @@ public final class BTreeIterator<T> implements Iterable<T> {
             root = null;
         }
         return result;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return (root != null);
+    }
+
+    @Override
+    public T next() {
+        if (! hasNext()) {
+            throw new java.util.NoSuchElementException("no more elements");
+        }
+        
+        return inorderNext();
+    }
+
+    /* not implemented */
+    @Override
+    public void remove() {
+        throw new java.lang.UnsupportedOperationException("remove");
     }
     
 }

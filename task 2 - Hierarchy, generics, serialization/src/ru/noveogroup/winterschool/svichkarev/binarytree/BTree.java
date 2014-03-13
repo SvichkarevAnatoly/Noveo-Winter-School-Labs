@@ -99,6 +99,20 @@ public class BTree<T extends Parent> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         // our iterator
-        return new BTreeIterator<T>( root ).iterator();
+        return new BTreeIterator<T>( root );
+    }
+    
+    // for testing
+    @Override
+    public String toString() {
+        String result = "";
+        
+        Iterator<T> it = iterator();
+        for (T el : this) {
+            //result += node.toString() + "(" + toString( el.getLeft() ) + ", " +
+            //        toString(node.getRight()) + ")";
+        }
+        
+        return result;
     }
 }
