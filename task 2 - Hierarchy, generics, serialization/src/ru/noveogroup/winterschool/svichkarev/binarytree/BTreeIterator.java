@@ -16,8 +16,6 @@ public final class BTreeIterator<T> implements Iterator<T> {
      * is to the left (false) or right (true) of its parent
      */
     private Stack<Node<T>> visiting = new Stack<Node<T>>();
-    
-    
     public BTreeIterator( Node<T> treeRoot ){
         this.root = treeRoot;
         visiting = new Stack<Node<T>>();

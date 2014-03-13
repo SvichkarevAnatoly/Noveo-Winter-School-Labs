@@ -6,4 +6,10 @@ final public class Child2 extends Parent {
         super(value);
     }
 
+    // just for testing
+    @Override
+    public String toString(){
+        return new String( "Child2=" + field );
+    }
+    
 }

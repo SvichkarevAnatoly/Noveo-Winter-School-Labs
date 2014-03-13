@@ -16,8 +16,9 @@ public class BTree<T extends Parent> implements Iterable<T> {
         Node<T> preNode = null;
         
         while( tmpNode != null ){
-            int cmp = value.hashCode() - tmpNode.hashCode();
+            int cmp = value.hashCode() - tmpNode.getValue().hashCode();
             if( cmp == 0 ){
+                // do not dublicate values in tree
                 tmpNode.setValue(value);
                 return;
             } else{
@@ -34,7 +35,7 @@ public class BTree<T extends Parent> implements Iterable<T> {
         if( preNode == null ){
             root = newNode;
         } else{
-            if( value.hashCode() < preNode.hashCode() ){
+            if( value.hashCode() < preNode.getValue().hashCode() ){
                 preNode.setLeftNode(newNode);
             } else{
                 preNode.setRightNode(newNode);
@@ -48,7 +49,7 @@ public class BTree<T extends Parent> implements Iterable<T> {
         Node<T> preNode = null;
         
         while( tmpNode != null ){
-            int cmp = value.hashCode() - tmpNode.hashCode();
+            int cmp = value.hashCode() - tmpNode.getValue().hashCode();
             if( cmp == 0 ){
                 break;
             } else{
@@ -107,11 +108,15 @@ public class BTree<T extends Parent> implements Iterable<T> {
     public String toString() {
         String result = "";
         
-        Iterator<T> it = iterator();
-        for (T el : this) {
-            //result += node.toString() + "(" + toString( el.getLeft() ) + ", " +
-            //        toString(node.getRight()) + ")";
+        // you can choose how iterate BTree
+        for (T elem : this) {
+            result += elem.toString() + "\n";
         }
+        
+        /*Iterator<T> it = iterator();
+        while( it.hasNext() ){
+            result += it.next().toString() + "\n";
+        }*/
         
         return result;
     }
