@@ -1,13 +1,14 @@
 package ru.noveogroup.winterschool.svichkarev;
 
 import ru.noveogroup.winterschool.svichkarev.binarytree.BTree;
+import ru.noveogroup.winterschool.svichkarev.binarytree.BTreeInterface;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child1;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child2;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 public final class Main {
     public static void main(String[] args) {
-        BTree<Parent> tree = new BTree<>();
+        BTreeInterface<Parent> tree = new BTree<>();
         
         Parent someNodeValue1 = new Child1( 5 );
         Parent someNodeValue2 = new Child1( 35 );

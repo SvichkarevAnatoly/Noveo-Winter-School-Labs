@@ -3,11 +3,7 @@ package ru.noveogroup.winterschool.svichkarev.binarytree;
 import java.util.Iterator;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
-/*
-    Если хеш-коды разные, то и входные объекты гарантированно разные.
-    Если хеш-коды равны, то входные объекты не всегда равны.
- */
-public class BTree<T extends Parent> implements Iterable<T> {
+public class BTree<T extends Parent> implements BTreeInterface<T>{
     private Node<T> root = null;
     
     public void add( T value ) {
@@ -16,6 +12,8 @@ public class BTree<T extends Parent> implements Iterable<T> {
         Node<T> preNode = null;
         
         while( tmpNode != null ){
+            /*  Если хеш-коды разные, то и входные объекты гарантированно разные.
+            Если хеш-коды равны, то входные объекты не всегда равны.*/
             int cmp = value.hashCode() - tmpNode.getValue().hashCode();
             if( cmp == 0 ){
                 // do not dublicate values in tree
