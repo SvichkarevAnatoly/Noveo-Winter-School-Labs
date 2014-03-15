@@ -1,13 +1,19 @@
 package ru.noveogroup.winterschool.svichkarev.binarytree;
 
 import java.util.Iterator;
+
+import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NodeNotFoundException;
+import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NullNodeFoundException;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 public class BTree<T extends Parent> implements BTreeInterface<T>{
     private Node<T> root = null;
     
-    public void add( T value ) {
-        //? проверка, что не null
+    public void add( T value ) throws NullNodeFoundException {
+        if( value == null ){
+            throw new NullNodeFoundException();
+        }
+        
         Node<T> tmpNode = root;
         Node<T> preNode = null;
         
@@ -41,8 +47,11 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         }
     }
 
-    public void remove( T value ){
-      //? проверка, что не null
+    public void remove( T value ) throws NullNodeFoundException, NodeNotFoundException{
+        if( value == null ){
+            throw new NullNodeFoundException();
+        }
+        
         Node<T> tmpNode = root;
         Node<T> preNode = null;
         
@@ -59,9 +68,9 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
                 }
             }
         }
-        // if empty tree
+        // if node is not in tree
         if( tmpNode == null ){
-            return;
+            throw new NodeNotFoundException();
         }
         
         if( tmpNode.getRightNode() == null ){
