@@ -8,7 +8,4 @@ public interface BTreeInterface<T> extends Iterable<T> {
     public void remove( T value );
     
     public Iterator<T> iterator();
-    
-    // for testing
-    public String toString();
 }

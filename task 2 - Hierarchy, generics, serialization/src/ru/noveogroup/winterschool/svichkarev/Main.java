@@ -2,6 +2,7 @@ package ru.noveogroup.winterschool.svichkarev;
 
 import ru.noveogroup.winterschool.svichkarev.binarytree.BTree;
 import ru.noveogroup.winterschool.svichkarev.binarytree.BTreeInterface;
+import ru.noveogroup.winterschool.svichkarev.binarytree.utility.PrinterTree;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child1;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child2;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
@@ -26,14 +27,14 @@ public final class Main {
         tree.add( new Child2( 31 ) );
         tree.add( new Parent( 17 ) );
         
-        // iterator testing in toString()
-        System.out.println( tree.toString() );
+        // iterator testing
+        PrinterTree.printTree( tree, System.out );
         
         // remove some nodes
         tree.remove( someNodeValue1 );
         tree.remove( someNodeValue2 );
         
-        System.out.println( tree.toString() ); 
+        PrinterTree.printTree( tree, System.out ); 
     }
 
 }

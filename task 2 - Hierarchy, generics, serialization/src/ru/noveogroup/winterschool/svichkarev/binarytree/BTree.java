@@ -100,22 +100,4 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         // our iterator
         return new BTreeIterator<T>( root );
     }
-    
-    // for testing
-    @Override
-    public String toString() {
-        String result = "";
-        
-        // you can choose how iterate BTree
-        for (T elem : this) {
-            result += elem.toString() + "\n";
-        }
-        
-        /*Iterator<T> it = iterator();
-        while( it.hasNext() ){
-            result += it.next().toString() + "\n";
-        }*/
-        
-        return result;
-    }
 }
