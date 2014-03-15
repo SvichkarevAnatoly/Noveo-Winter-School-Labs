@@ -109,4 +109,9 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         // our iterator
         return new BTreeIterator<T>( root );
     }
+    
+    @Override
+    public int countLeafs() {
+        return root == null ? 0 : root.countNodeLeafs();
+    }
 }

@@ -10,5 +10,7 @@ public interface BTreeInterface<T> extends Iterable<T> {
     
     public void remove( T value ) throws NullNodeFoundException, NodeNotFoundException;
     
+    public int countLeafs();
+    
     public Iterator<T> iterator();
 }

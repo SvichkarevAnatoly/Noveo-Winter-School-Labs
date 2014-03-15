@@ -31,12 +31,14 @@ public final class Main {
             
             // iterator testing
             PrinterTree.printTree( tree, System.out );
+            System.out.println( "Leafs = " + tree.countLeafs() );
             
             // remove some nodes
             tree.remove( someNodeValue2 );
             tree.remove( new Parent( 17 ) );
             
             PrinterTree.printTree( tree, System.out );
+            System.out.println( "Leafs = " + tree.countLeafs() );
             
             // if you want catch exception, uncomment it
             //tree.remove( new Parent( 55 ) );

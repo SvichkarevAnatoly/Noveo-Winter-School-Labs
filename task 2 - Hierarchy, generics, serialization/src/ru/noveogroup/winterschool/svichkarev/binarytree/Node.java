@@ -31,4 +31,14 @@ class Node<T>{
     public void setRightNode(Node<T> right) {
         this.right = right;
     }
+
+    public int countNodeLeafs() {
+        // in correct tree it's impossible, only if both equals null
+        if( left == right ){
+            return 1;
+        }
+        
+        return ((left == null)? 0 : left.countNodeLeafs()) +
+               ((right == null)? 0 : right.countNodeLeafs()) ;
+    }
 }
