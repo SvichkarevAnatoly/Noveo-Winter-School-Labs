@@ -1,6 +1,9 @@
 package ru.noveogroup.winterschool.svichkarev.hierarhy;
 
-public class Parent {
+import java.io.Serializable;
+
+public class Parent implements Serializable {
+    private static final long serialVersionUID = 7L;
     // just for testing
     protected int field;
     

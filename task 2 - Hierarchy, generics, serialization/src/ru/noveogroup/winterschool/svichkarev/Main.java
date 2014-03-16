@@ -1,15 +1,21 @@
 package ru.noveogroup.winterschool.svichkarev;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import ru.noveogroup.winterschool.svichkarev.binarytree.BTree;
 import ru.noveogroup.winterschool.svichkarev.binarytree.BTreeInterface;
 import ru.noveogroup.winterschool.svichkarev.binarytree.exception.TreeException;
 import ru.noveogroup.winterschool.svichkarev.binarytree.utility.PrinterTree;
+import ru.noveogroup.winterschool.svichkarev.binarytree.utility.SaverLoaderTree;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child1;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Child2;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 public final class Main {
     public static void main(String[] args) {
+        final String fileName = "testSave.txt";
+        
         BTreeInterface<Parent> tree = new BTree<>();
         
         Parent someNodeValue1 = new Child1( 5 );
@@ -37,6 +43,33 @@ public final class Main {
             tree.remove( new Parent( 17 ) );
             
             PrinterTree.printTree( tree, System.out );
+            
+            // SAVE
+            try {
+                SaverLoaderTree.save( tree, fileName );
+            } catch (FileNotFoundException e) {
+                // Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            // LOAD
+            BTreeInterface<?> loadTree = null;
+            try {
+                loadTree = (BTreeInterface<?>) SaverLoaderTree.load( fileName );
+            } catch (ClassNotFoundException e) {
+                // Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+            
+            PrinterTree.printTree( loadTree, System.out );
+            System.out.println( "Leafs = " + loadTree.countLeafs() );
             
             // if you want catch exception, uncomment it
             //tree.remove( new Parent( 55 ) );

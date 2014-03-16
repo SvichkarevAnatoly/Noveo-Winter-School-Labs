@@ -7,6 +7,7 @@ import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NullNodeFoundE
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 public class BTree<T extends Parent> implements BTreeInterface<T>{
+    private static final long serialVersionUID = 7L;
     private Node<T> root = null;
     
     public void add( T value ) throws NullNodeFoundException {
@@ -96,9 +97,9 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
                 leftMost = leftMost.getLeftNode();
             }
             if( preNode != null ){
-                preNode.setLeftNode(leftMost.getRightNode()); //?
+                preNode.setLeftNode(leftMost.getRightNode());
             } else{
-                tmpNode.setRightNode(leftMost.getRightNode()); //?
+                tmpNode.setRightNode(leftMost.getRightNode());
             }
             tmpNode.setValue(leftMost.getValue());
         }

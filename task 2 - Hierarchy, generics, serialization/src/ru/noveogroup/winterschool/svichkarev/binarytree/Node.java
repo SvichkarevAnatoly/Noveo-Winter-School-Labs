@@ -1,6 +1,9 @@
 package ru.noveogroup.winterschool.svichkarev.binarytree;
 
-class Node<T>{
+import java.io.Serializable;
+
+class Node<T> implements Serializable{
+    private static final long serialVersionUID = 7L;
     private T value;
     private Node<T> left, right;
     
