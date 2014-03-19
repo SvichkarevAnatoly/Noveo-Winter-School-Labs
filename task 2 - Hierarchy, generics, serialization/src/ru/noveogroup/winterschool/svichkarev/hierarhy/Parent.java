@@ -2,7 +2,7 @@ package ru.noveogroup.winterschool.svichkarev.hierarhy;
 
 import java.io.Serializable;
 
-public class Parent implements Serializable {
+public class Parent implements Serializable, Comparable<Parent> {
     private static final long serialVersionUID = 7L;
     // just for testing
     protected int field;
@@ -21,5 +21,10 @@ public class Parent implements Serializable {
     @Override
     public int hashCode() {
         return field;
+    }
+
+    @Override
+    public int compareTo( Parent other ) {
+        return Integer.compare( field, other.field);
     }
 }

@@ -3,25 +3,24 @@ package ru.noveogroup.winterschool.svichkarev.binarytree;
 import java.util.Iterator;
 
 import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NodeNotFoundException;
-import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NullNodeFoundException;
 import ru.noveogroup.winterschool.svichkarev.hierarhy.Parent;
 
 public class BTree<T extends Parent> implements BTreeInterface<T>{
+    private static final String ERROR_MESSAGE = "Null node found as argument";
     private static final long serialVersionUID = 7L;
-    private Node<T> root = null;
-    
-    public void add( T value ) throws NullNodeFoundException {
+    private Node<T> root;
+
+    @Override
+    public void add( T value ) throws IllegalArgumentException {
         if( value == null ){
-            throw new NullNodeFoundException();
+            throw new IllegalArgumentException( ERROR_MESSAGE );
         }
         
         Node<T> tmpNode = root;
         Node<T> preNode = null;
         
         while( tmpNode != null ){
-            /*  Если хеш-коды разные, то и входные объекты гарантированно разные.
-            Если хеш-коды равны, то входные объекты не всегда равны.*/
-            int cmp = value.hashCode() - tmpNode.getValue().hashCode();
+            int cmp = value.compareTo( tmpNode.getValue() );
             if( cmp == 0 ){
                 // do not dublicate values in tree
                 tmpNode.setValue(value);
@@ -40,7 +39,7 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         if( preNode == null ){
             root = newNode;
         } else{
-            if( value.hashCode() < preNode.getValue().hashCode() ){
+            if( value.compareTo( preNode.getValue() ) < 0 ){
                 preNode.setLeftNode(newNode);
             } else{
                 preNode.setRightNode(newNode);
@@ -48,16 +47,17 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         }
     }
 
-    public void remove( T value ) throws NullNodeFoundException, NodeNotFoundException{
+    @Override
+    public void remove( T value ) throws IllegalArgumentException, NodeNotFoundException{
         if( value == null ){
-            throw new NullNodeFoundException();
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
         
         Node<T> tmpNode = root;
         Node<T> preNode = null;
         
         while( tmpNode != null ){
-            int cmp = value.hashCode() - tmpNode.getValue().hashCode();
+            int cmp = value.compareTo( tmpNode.getValue() );
             if( cmp == 0 ){
                 break;
             } else{
@@ -110,7 +110,7 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
         // our iterator
         return new BTreeIterator<T>( root );
     }
-    
+
     @Override
     public int countLeafs() {
         return root == null ? 0 : root.countNodeLeafs();

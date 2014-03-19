@@ -36,8 +36,7 @@ class Node<T> implements Serializable{
     }
 
     public int countNodeLeafs() {
-        // in correct tree it's impossible, only if both equals null
-        if( left == right ){
+        if( (left == null) && (right == null) ){
             return 1;
         }
         

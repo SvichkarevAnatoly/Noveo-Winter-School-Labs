@@ -50,10 +50,8 @@ public final class Main {
             try {
                 SaverLoaderTree.save( tree, fileName );
             } catch (FileNotFoundException e) {
-                // Auto-generated catch block
                 e.printStackTrace();
             } catch (IOException e) {
-                // Auto-generated catch block
                 e.printStackTrace();
             }
             
@@ -62,10 +60,8 @@ public final class Main {
             try {
                 loadTree = (BTreeInterface<?>) SaverLoaderTree.load( fileName );
             } catch (ClassNotFoundException e) {
-                // Auto-generated catch block
                 e.printStackTrace();
             } catch (IOException e) {
-                // Auto-generated catch block
                 e.printStackTrace();
             }
             

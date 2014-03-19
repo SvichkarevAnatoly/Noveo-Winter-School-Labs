@@ -2,6 +2,8 @@ package ru.noveogroup.winterschool.svichkarev.hierarhy;
 
 final public class Child1 extends Parent {
 
+    private static final long serialVersionUID = 7L;
+
     public Child1(int value) {
         super(value);
     }

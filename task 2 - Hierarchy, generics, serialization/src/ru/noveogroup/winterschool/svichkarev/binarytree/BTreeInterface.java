@@ -7,11 +7,11 @@ import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NodeNotFoundEx
 import ru.noveogroup.winterschool.svichkarev.binarytree.exception.NullNodeFoundException;
 
 public interface BTreeInterface<T> extends Iterable<T>, Serializable {
-    public void add( T value ) throws NullNodeFoundException;
+    void add( T value ) throws NullNodeFoundException;
     
-    public void remove( T value ) throws NullNodeFoundException, NodeNotFoundException;
+    void remove( T value ) throws NullNodeFoundException, NodeNotFoundException;
     
-    public int countLeafs();
+    int countLeafs();
     
-    public Iterator<T> iterator();
+    Iterator<T> iterator();
 }
