@@ -1,7 +1,8 @@
 package ru.noveogroup.winterschool.svichkarev.binarytree;
 
+import java.util.ArrayDeque;
 import java.util.Iterator;
-import java.util.Stack;
+import java.util.Deque;
 
 // http://www2.hawaii.edu/~esb/2010spring.ics211/TreeIterator.java.html
 public final class BTreeIterator<T> implements Iterator<T> {
@@ -18,11 +19,10 @@ public final class BTreeIterator<T> implements Iterator<T> {
      * the second stack keeps track of whether the node visited
      * is to the left (false) or right (true) of its parent
      */
-    private Stack<Node<T>> visiting = new Stack<Node<T>>();
+    private Deque<Node<T>> visiting;
     public BTreeIterator( Node<T> treeRoot ){
         this.root = treeRoot;
-        visiting = new Stack<Node<T>>();
-        new Stack<Boolean>();
+        visiting = new ArrayDeque<Node<T>>();
     }
     
     /* find the leftmost node from this root, pushing all the
@@ -34,7 +34,7 @@ public final class BTreeIterator<T> implements Iterator<T> {
     private void pushLeftmostNode(Node<T> node) {
         // find the leftmost node
         if (node != null) {
-            visiting.push(node); // push this node
+            visiting.addFirst(node); // push this node
             pushLeftmostNode(node.getLeftNode()); // recurse on next left node
         }
     }
@@ -44,12 +44,12 @@ public final class BTreeIterator<T> implements Iterator<T> {
      * inorder traversal doesn't use the visitingRightChild stack
      */
     private T inorderNext() {
-        if (visiting.empty()) { // at beginning of iterator
+        if (visiting.isEmpty()) { // at beginning of iterator
             // find the leftmost node, pushing all the intermediate nodes
             // onto the visiting stack
             pushLeftmostNode(root);
         } // now the leftmost unvisited node is on top of the visiting stack
-        Node<T> node = visiting.pop();
+        Node<T> node = visiting.removeFirst();
         T result = node.getValue(); // this is the value to return
         // if the node has a right child, its leftmost node is next
         if (node.getRightNode() != null) {
@@ -59,7 +59,7 @@ public final class BTreeIterator<T> implements Iterator<T> {
             // note "node" has been replaced on the stack by its right child
         } // else: no right subtree, go back up the stack
           // next node on stack will be next returned
-        if (visiting.empty()) { // no next node left
+        if (visiting.isEmpty()) { // no next node left
             root = null;
         }
         return result;

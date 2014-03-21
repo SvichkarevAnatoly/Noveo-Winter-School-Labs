@@ -11,7 +11,7 @@ public class BTree<T extends Parent> implements BTreeInterface<T>{
     private Node<T> root;
 
     @Override
-    public void add( T value ) throws IllegalArgumentException {
+    public void add( T value ){
         if( value == null ){
             throw new IllegalArgumentException( ERROR_MESSAGE );
         }
