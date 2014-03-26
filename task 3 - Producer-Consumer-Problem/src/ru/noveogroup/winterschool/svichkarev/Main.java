@@ -33,16 +33,15 @@ procedure consumer() {
 */
 public class Main {
     public static void main(String[] args) {
-        System.out.println( "Her" );
+        Buffer<Object> commonBuffer = new Buffer<Object>();
         
-        Buffer<Integer> commonBuffer = new Buffer<Integer>();
+        Producer<?> producer = new Producer<Object>( commonBuffer, Object.class );
+        Consumer<?> consumer = new Consumer<Object>( commonBuffer );
         
-        Producer producer = new Producer( commonBuffer );
-        Consumer consumer = new Consumer( commonBuffer );
+        Thread threadProducer = new Thread( producer );
+        Thread threadConsumer = new Thread( consumer );
         
-        new Thread( producer ).start();
-        new Thread( consumer ).start();
-        
-        // ждём 5 секунд и завершаем как-то потоки
+        threadProducer.start();
+        threadConsumer.start();
     }
 }
