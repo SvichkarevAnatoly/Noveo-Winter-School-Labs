@@ -12,13 +12,20 @@ public class Consumer<E> implements Runnable {
     public void run(){
         E item;
         while( true ){
+            if( Thread.interrupted() ){
+                return;
+            }
             item = buffer.removeItem();
-            consumItem( item );
+            consumeItem( item );
         }
     }
 
-    private void consumItem(E item) {
-        System.out.println( "Consumer: consumItem" );
+    private void consumeItem(E item) {
+        if( item == null ){
+            System.out.println( "Consumer: Item is null" );
+            return;
+        }
+        System.out.println( "Consumer: consume Item " + item.toString() );
     }
 
 }
