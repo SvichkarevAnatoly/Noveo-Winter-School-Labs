@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="ru.noveogroup.winterschool.svichkarev.twoactivitylogin.SecondActivity"
+            android:label="@string/title_activity_second"
+            android:parentActivityName="ru.noveogroup.winterschool.svichkarev.twoactivitylogin.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.noveogroup.winterschool.svichkarev.twoactivitylogin.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

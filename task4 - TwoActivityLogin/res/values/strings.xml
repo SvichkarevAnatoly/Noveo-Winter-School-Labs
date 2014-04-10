@@ -2,6 +2,12 @@
 <resources>
 
     <string name="app_name">task4 - TwoActivityLogin</string>
+    <string name="first_name">First name:</string>
+    <string name="last_name">Last name:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="btn_label">OK</string>
+    <string name="age">Age:</string>
+    <string name="title_activity_second">Second Activity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
